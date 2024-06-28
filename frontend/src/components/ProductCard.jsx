@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./ProductCard.css";
-import formatNumber from "../helpers/formatNumber";
 import { API_URL } from "../helpers/constants";
+import formatCurrency from "../helpers/formatCurrency";
 export default function ProductCard({ product }) {
   return (
     <div>
@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
         <div className="product-list__details">
           <h3>{product.name}</h3>
           <p>{product.description}</p>
-          <p>Price: {formatNumber(product.price.value/100, product.price.currency)}</p>
+          <p>Price: {formatCurrency(product.price.value/100, product.price.currency)}</p>
         </div>
         <form
           action={`${API_URL}/create-checkout-session/?price_id=${product.default_price}&product_id=${product.id}&quantity=1`}
