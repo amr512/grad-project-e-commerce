@@ -1,0 +1,127 @@
+import e from "express";
+import "dotenv/config";
+import fs from "fs";
+import { Stripe } from "stripe";
+import cors from "cors";
+import bodyParser from "body-parser";
+
+const stripe = new Stripe(
+  process.env.STRIPE_SECRET_KEY
+);
+const app = e();
+
+app.use(
+  e.static("public"),
+  cors({
+    origin: "*",
+  }),
+  bodyParser.urlencoded({ extended: true }),
+);
+
+const WEBSITE_DOMAIN = "http://localhost:5173";
+
+const port = process.env.PORT || 3000;
+// let products = []
+// fs.readdirSync("products").forEach((file) => {
+//     // console.log(file)
+//     products.push(JSON.parse(fs.readFileSync("./products/" + file)))
+// })
+
+// check product IDs to make sure they are unique and return an error with the duplicated ID
+// products.forEach((product) => {
+//     if (products.find(p => p.id === product.id)) throw new Error("Duplicate product ID: " + product.id)
+// })
+
+// const products = await stripe.products.list()
+
+// products.data.forEach(async (product) => {
+//     let price = await (stripe.prices.retrieve(product.default_price))
+//     product.price = price.unit_amount_decimal + " " + price.currency
+//     // console.log(product)
+// });
+
+app.listen(port, () => console.log("server started on port: " + port));
+
+app.get("/products", async (req, res) => {
+  stripe.products
+    .list()
+    .then(async (products) => {
+      return await Promise.all(
+        products.data.map(async (product) => {
+          const price = await stripe.prices.retrieve(product.default_price);
+          product.price = {
+            value: price.unit_amount_decimal,
+            currency: price.currency,
+          };
+          return product;
+          //   .then((p) => (p.unit_amount_decimal + " " + p.currency))
+          //   .then((price) => {
+          //     product.price = price;
+          //     console.log(product);
+          //     return product;
+          //   });
+        })
+      );
+    })
+    .then((e) => {
+      res.json(e);
+    });
+});
+
+app.get("/products/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const product = await stripe.products.retrieve(id);
+    // const product = products.find(p => p.id == id);
+    res.send(product);
+  } catch (err) {
+    res
+      .status(err.statusCode || 500)
+      .send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
+  }
+});
+app.post("/create-checkout-session/", async (req, res) => {
+  try{
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: req.body.price_id,
+        quantity: req.body.quantity,
+      },
+    ],
+    mode: "payment",
+    success_url: `${WEBSITE_DOMAIN}/success?product_id=${req.body.product_id}`,
+    cancel_url: `${WEBSITE_DOMAIN}/canceled`,
+  });
+
+  res.redirect(303, session.url);
+}catch(err){
+    res.status(err.statusCode || 500).send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
+}
+});
+// {
+//     id: 'prod_QMMRSndPYiWjFa',
+//     object: 'product',
+//     active: true,
+//     attributes: [],
+//     created: 1719338634,
+//     default_price: 'price_1PVdihJK1JIJyUHcDhfjT3l2',
+//     description: 'test test test ',
+//     images: [
+//       'https://files.stripe.com/links/MDB8YWNjdF8xS2pSZUdKSzFKSUp5VUhjfGZsX3Rlc3RfbVZqbmFncnhQYzlSWUgwRkE4ZE9CSVJw009sDxQzjN'
+//     ],
+//     livemode: false,
+//     marketing_features: [],
+//     metadata: {},
+//     name: 'test',
+//     package_dimensions: null,
+//     shippable: null,
+//     statement_descriptor: null,
+//     tax_code: null,
+//     type: 'service',
+//     unit_label: null,
+//     updated: 1719598453,
+//     url: null,
+//     price: '200000 egp'
+//   }
