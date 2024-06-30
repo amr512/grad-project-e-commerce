@@ -1,0 +1,23 @@
+.navbar{
+    //align the top left corner to the top left side of the window
+    position: sticky;
+    
+    /* background-color: white; */
+    padding: 1vh;
+    padding-left:3vw;
+    padding-right:3vw;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* position: sticky; */
+}
+
+
+
+.heading{
+    margin-start: 2vw;
+    margin-top: 1vh;
+    text-align: start;
+}

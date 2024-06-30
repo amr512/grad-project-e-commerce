@@ -3,7 +3,7 @@ import { useState } from "react";
 import ProductList from "../components/ProductList";
 import { API_URL } from "../helpers/constants";
 export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
   const params = new URLSearchParams()
   if(params.has('success')){
     alert('Payment successful')
@@ -23,8 +23,8 @@ export default function ProductsPage() {
     fetchProducts();
   },[]);
   return (
-    <div>
-      <ProductList products={products} />
+    <div className="page">
+      <ProductList products={products} /> 
     </div>
   );
 }

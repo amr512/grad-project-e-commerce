@@ -1,29 +1,33 @@
 import PropTypes from "prop-types";
-import "./ProductCard.css";
+import "./styles/ProductCard.css";
 import { API_URL } from "../helpers/constants";
 import formatCurrency from "../helpers/formatCurrency";
+import { Button, Card, CardHeader, Input, Image, Heading, StepSeparator } from "@chakra-ui/react";
 export default function ProductCard({ product }) {
   return (
     <div>
-      <div className="product-card">
-        <div className="product-list__image">
-          <img src={product.images[0]} alt={product.name} />
-        </div>
+        <Card className="product-card">
+          <CardHeader>
+          <Heading size={'md'}>{product.name}</Heading>
+          <Image className="product-list__image" src={product.images[0]} alt={product.name}/>
+          </CardHeader>
         <div className="product-list__details">
-          <h3>{product.name}</h3>
           <p>{product.description}</p>
           <p>Price: {formatCurrency(product.price.value/100, product.price.currency)}</p>
         </div>
         <form
           action={`${API_URL}/create-checkout-session/?price_id=${product.default_price}&product_id=${product.id}&quantity=1`}
           method="POST"
-        >
-            <input type="hidden" name="product_id" value={product.id} />
-            <input type="hidden" name="price_id" value={product.default_price} />
-            <input type="number" name="quantity" defaultValue={1} />
-          <button type="submit">Buy</button>
+          >
+          <div className="flex-row">
+            <Input type="hidden" name="product_id" value={product.id} />
+            <Input type="hidden" name="price_id" value={product.default_price} />
+            <Input type="number" name="quantity" defaultValue={1} />
+          <Button type="submit">Buy</Button>
+          </div>
         </form>
-      </div>
+          </Card>
+      
     </div>
   );
 }

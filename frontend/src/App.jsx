@@ -1,42 +1,58 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import "./App.css"; // Import your CSS animations
+import Home from "./pages/Home";
+import ProductsPage from "./pages/ProductsPage";
 import {
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+  ColorModeProvider,
+  chakra,
+  localStorageManager,
+} from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 
-function App() {
-  const [count, setCount] = useState(0);
-  // const stripe = useStripe();
-  // const elements = useElements();
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (!stripe || !elements) {
-  //     return;
-  //   }
-  //   const { error, paymentIntent } = await stripe.confirmPayment({
-  //     confirmParams: {
-  //       return_url: "https://stripe.com",
-  //     },
-  //   });
+const App = () => {
+  const Location = useLocation();
+  ColorModeProvider({
+    colorModeManager: localStorageManager,
+    options: { initialColorMode: "system" },
+  });
 
-  //   if (error) {
-  //     console.log("[error]", error.message);
-  //   } else if (paymentIntent) {
-  //     console.log("[paymentIntent]", paymentIntent);
-  //   }
-  // };
+  const animate = (Component) => {
+    return function anim() {
+      return (
+        <motion.div
+          key={Location.key}
+          initial={{ translateX: 100, opacity: 0.5 }}
+          animate={{
+            translateX: 0,
+            translateY: 0,
+            opacity: 1,
+          }}
+          transition={{
+            type: "tween",
+          }}
+          // exit={{ translateX: -100, opacity: 0}}
+        >
+          <Component />
+        </motion.div>
+      );
+    };
+  };
 
   return (
-    <>
-      <div>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <NavBar />
+      <AnimatePresence >
+        <Routes location={Location} key={Location.pathname}>
+          <Route exact path="/" Component={animate(Home)} />
+          <Route path="/products" Component={animate(ProductsPage)} />
+          {/* <Route path="/contact" component={Contact} /> */}
+          {/* <redirect to="/" /> */}
+        </Routes>
+      </AnimatePresence>
+    </div>
   );
-}
+};
 
 export default App;
