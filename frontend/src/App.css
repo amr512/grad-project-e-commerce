@@ -48,7 +48,7 @@
     transform: rotate(360deg);
   }
 }
-
+/* 
 
 .page-enter .page-enter-active {
 
@@ -71,4 +71,4 @@
   transition: opacity 300ms, transform 300ms;
   animation: spin 5s linear infinite;
 
-}
+} */

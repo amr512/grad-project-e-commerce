@@ -36,7 +36,7 @@ export default function NavBar() {
       <Heading textAlign="start">Grad Project</Heading>
       {/* navbar and color mode button to the right */}
       <Stack direction={"row"}>
-        {colorMode === "dark" ? (
+        
           <IconButton
             borderRadius={"full"}
             aria-label="Toggle Color Mode"
@@ -45,19 +45,8 @@ export default function NavBar() {
               toggleColorMode();
               console.log(colorMode);
             }}
-            icon={<SunIcon />}
+            icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
           />
-        ) : (
-          <IconButton
-            aria-label="Toggle Color Mode"
-            onMouseUp={(e) => {
-              e.preventDefault();
-              toggleColorMode();
-              console.log(colorMode);
-            }}
-            icon={<MoonIcon />}
-          />
-        )}
         <Tabs index={tabIndex} textAlign="end" variant={"soft-rounded"}>
           <TabList gap={'0.5vw'}>
             <Link to="/">

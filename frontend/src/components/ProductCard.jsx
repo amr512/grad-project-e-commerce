@@ -35,7 +35,11 @@ export default function ProductCard({ product }) {
               )}
             </p>
           </div>
-
+          {/* <p>
+              {product?.metadata.keys.map((e) => (
+                <p key={e.key}>{e.key}: {e.value}</p>
+              ))}
+          </p> */}
           <form
             action={`${API_URL}/create-checkout-session/?price_id=${product.default_price}&product_id=${product.id}&quantity=1`}
             method="POST"
@@ -68,5 +72,6 @@ ProductCard.propTypes = {
     }).isRequired,
     images: PropTypes.array.isRequired,
     description: PropTypes.string.isRequired,
+    metadata: PropTypes.object
   }).isRequired,
 };

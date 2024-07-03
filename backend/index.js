@@ -100,6 +100,12 @@ app.post("/create-checkout-session/", async (req, res) => {
     res.status(err.statusCode || 500).send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
 }
 });
+
+app.get("/images/:img", (req, res) => {
+  
+  res.send(fs.readFileSync("./media/" + req.params.img));
+});
+
 // {
 //     id: 'prod_QMMRSndPYiWjFa',
 //     object: 'product',

@@ -1,0 +1,25 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url(../../media/images/home1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    /* background-attachment: fixed;  */
+  }
+  .main h2 {
+    color: #96535b;
+    font-size: 2em;
+    font-weight: 500;
+  }
+  .main h2 span {
+    display: inline-block;
+    margin-top: 10px;
+    color: #272034;
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  
