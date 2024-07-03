@@ -19,11 +19,11 @@ const App = () => {
   // });
 
   // const navigate = useNavigate();
-  
+
   const animate = (Component) => {
     // return function anim() {
-      return (
-        <motion.div
+    return (
+      <motion.div
         key={Location.key}
         initial={{ translateX: 100, opacity: 0.5 }}
         animate={{
@@ -35,14 +35,15 @@ const App = () => {
           type: "tween",
         }}
         // exit={{ translateX: -100, opacity: 0}}
-        >
-          <Component />
-        </motion.div>
-      );
-      // };
-    };
-    
-    const routes = useRoutes([
+      >
+        <Component />
+      </motion.div>
+    );
+    // };
+  };
+
+  const routes = useRoutes(
+    [
       {
         path: "/",
         element: animate(Home),
@@ -54,20 +55,23 @@ const App = () => {
       {
         path: "*",
         element: animate(Home),
-      }
-    ],Location)
-    
-    
-    return (
-      <div className="app">
+      },
+    ],
+    Location
+  );
+
+  return (
+    <div
+      className="app"
+    >
       <NavBar />
-      <AnimatePresence >
+      <AnimatePresence>
         {/* <Routes location={Location} key={Location.pathname} > */}
-          {routes}
+        {routes}
         {/* </Routes> */}
       </AnimatePresence>
     </div>
   );
 };
-  
+
 export default App;
