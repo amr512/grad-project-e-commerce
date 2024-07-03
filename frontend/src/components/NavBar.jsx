@@ -14,7 +14,7 @@ import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import "./styles/navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import PropTypes from "prop-types";
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
     const [tabIndex, setTabIndex] = useState()
@@ -31,9 +31,9 @@ export default function NavBar() {
     },[location])
 
   return (
-    <div className="navbar">
+    <div className="navbar" >
       {/* brand name to the left */}
-      <Heading textAlign="start">Grad Project</Heading>
+      <Heading textAlign="start">ADAS</Heading>
       {/* navbar and color mode button to the right */}
       <Stack direction={"row"}>
         
@@ -62,3 +62,4 @@ export default function NavBar() {
     </div>
   );
 }
+

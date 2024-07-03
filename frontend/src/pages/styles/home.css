@@ -3,7 +3,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-image: url(../../media/images/home1.png);
+    /* background-image: url(../media/images/home1.png); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

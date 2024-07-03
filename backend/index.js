@@ -5,9 +5,7 @@ import { Stripe } from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
 
-const stripe = new Stripe(
-  process.env.STRIPE_SECRET_KEY
-);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
 
 app.use(
@@ -15,7 +13,7 @@ app.use(
   cors({
     origin: "*",
   }),
-  bodyParser.urlencoded({ extended: true }),
+  bodyParser.urlencoded({ extended: true })
 );
 
 const WEBSITE_DOMAIN = "http://localhost:5173";
@@ -81,30 +79,29 @@ app.get("/products/:id", async (req, res) => {
   }
 });
 app.post("/create-checkout-session/", async (req, res) => {
-  try{
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: req.body.price_id,
-        quantity: req.body.quantity,
-      },
-    ],
-    mode: "payment",
-    success_url: `${WEBSITE_DOMAIN}/success?product_id=${req.body.product_id}`,
-    cancel_url: `${WEBSITE_DOMAIN}/canceled`,
-  });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: req.body.price_id,
+          quantity: req.body.quantity,
+        },
+      ],
+      mode: "payment",
+      success_url: `${WEBSITE_DOMAIN}/success?product_id=${req.body.product_id}`,
+      cancel_url: `${WEBSITE_DOMAIN}/canceled`,
+    });
 
-  res.redirect(303, session.url);
-}catch(err){
-    res.status(err.statusCode || 500).send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
-}
+    res.redirect(303, session.url);
+  } catch (err) {
+    res
+      .status(err.statusCode || 500)
+      .send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
+  }
 });
 
-app.get("/images/:img", (req, res) => {
-  
-  res.send(fs.readFileSync("./media/" + req.params.img));
-});
+
 
 // {
 //     id: 'prod_QMMRSndPYiWjFa',

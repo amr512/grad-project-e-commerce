@@ -130,3 +130,6 @@ dist
 .pnp.*
 */.env.development
 */.env
+start.bat
+startback.bat
+startfront.bat
