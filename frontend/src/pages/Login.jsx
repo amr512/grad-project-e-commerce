@@ -7,7 +7,7 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { Form, Navigate, useNavigate } from "react-router-dom";
-import { Button, Card, CardBody, CardFooter, Checkbox, Input, Stack } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, CardFooter, Checkbox, Heading, Input, Stack } from "@chakra-ui/react";
 export default function Login() {
     const [hidden, setHidden] = useState(true)
   const provider = new GoogleAuthProvider();
@@ -44,9 +44,10 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <Card padding={"2vw"}margin={"4vw"} >
+    <Box display={"flex"} dir="column" alignItems={"center"} justifyContent={"center"} >
+      <Stack>
+      <Heading>Login</Heading>
+      <Card padding={"2rem"} margin={"4rem"}  >
   
           <CardBody >
             <Input
@@ -54,16 +55,16 @@ export default function Login() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
+              />
             <Input
               type={hidden ? "password" : "text"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+              />
             <Checkbox defaultChecked checked={hidden} onChange={(e) => setHidden(e.target.checked)}> Hide password</Checkbox>
           </CardBody>
-          <CardFooter gap={"2vw"} justifyContent={"center"}  >
+          <CardFooter gap={"2rem"} justifyContent={"center"}  >
             <Stack direction={"column"}>
             <Stack direction={"row"} justifyContent={"space-between"}>
             <Button onClick={handleLogin}>Login</Button>
@@ -74,6 +75,7 @@ export default function Login() {
           </CardFooter>
 
       </Card>
-    </div>
+              </Stack>
+    </Box>
   );
 }
