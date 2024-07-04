@@ -21,7 +21,7 @@ export default function NavBar() {
     const location = useLocation();
 
     useEffect(() => {
-      console.log(location);
+      // console.log(location);
         if(location.pathname === '/'){
             setTabIndex(0)
         }else if(location.pathname === '/products'){

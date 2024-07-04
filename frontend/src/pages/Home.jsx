@@ -7,8 +7,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { API_URL } from "../helpers/constants";
-
+import image1 from "../media/img1.jpg";
+import home1 from "../media/home1.png";
 const Home = () => {
   return (
     <div className="page">
@@ -16,7 +16,7 @@ const Home = () => {
         minH={"100vh"}
         minW={"100vw"}
         borderRadius={"0"}
-        backgroundImage={"src/media/home1.png"}
+        backgroundImage={home1}
         backgroundPosition={"center"}
         backgroundSize={"cover"}
       >
@@ -38,7 +38,7 @@ const Home = () => {
           overflow={"hidden"}
           
           >
-          <Image src={"src/media/img1.jpg"} />
+          <Image src={image1} />
           <Stack
           
           >
