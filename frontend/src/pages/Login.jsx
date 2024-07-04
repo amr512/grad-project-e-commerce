@@ -47,7 +47,7 @@ export default function Login() {
     <div>
       <h1>Login</h1>
       <Card padding={"2vw"}margin={"4vw"} >
-        <form>
+  
           <CardBody >
             <Input
               type="email"
@@ -72,7 +72,7 @@ export default function Login() {
             <Button  variant={"outline"} onClick={handleGoogle}>Sign in with Google</Button>
             </Stack>
           </CardFooter>
-        </form>
+
       </Card>
     </div>
   );
