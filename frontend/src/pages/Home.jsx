@@ -16,7 +16,7 @@ const Home = () => {
         minH={"100vh"}
         minW={"100vw"}
         borderRadius={"0"}
-        backgroundImage={"url(/src/media/home1.png)"}
+        backgroundImage={"src/media/home1.png"}
         backgroundPosition={"center"}
         backgroundSize={"cover"}
       >
@@ -38,7 +38,7 @@ const Home = () => {
           overflow={"hidden"}
           
           >
-          <Image src={"url(/src/media/img1.jpg)"} />
+          <Image src={"src/media/img1.jpg"} />
           <Stack
           
           >
