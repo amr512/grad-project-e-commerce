@@ -5,7 +5,7 @@ import { Spinner } from "@chakra-ui/react";
 export default function ProductList({ products }) {
   return (
     <div className="product-list">
-      <h1>Products</h1>
+      <h1>Products (placeholder for testing)</h1>
       <div className="product-list__items">
         {products ? (
           products.map((product) => (
