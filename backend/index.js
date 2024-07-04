@@ -4,9 +4,20 @@ import fs from "fs";
 import { Stripe } from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
-
+import {initializeApp} from "firebase/app"
+import {getAnalytics } from "firebase/analytics";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
+const firebase = initializeApp({
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID
+})
+// const analytics = getAnalytics(firebase);
 
 app.use(
   e.static("public"),

@@ -26,6 +26,8 @@ export default function NavBar() {
             setTabIndex(0)
         }else if(location.pathname === '/products'){
             setTabIndex(1)
+        } else if(location.pathname === '/login'){
+            setTabIndex(2)
         }
 
     },[location])
@@ -55,7 +57,10 @@ export default function NavBar() {
             <Link to="/products">
               <Tab id="/products">Products</Tab>
             </Link>
-            <Tab>Cart</Tab>
+            <Link to="/login">
+              <Tab id="/login">Log In/Sign up</Tab>
+            </Link>
+            {/* <Tab></Tab> */}
           </TabList>
         </Tabs>
       </Stack>

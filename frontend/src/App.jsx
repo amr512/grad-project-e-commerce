@@ -10,6 +10,7 @@ import {
   localStorageManager,
 } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
 
 const App = () => {
   const Location = useLocation();
@@ -53,9 +54,14 @@ const App = () => {
         element: animate(ProductsPage),
       },
       {
+        path:"/login",
+        element: animate(Login),
+      },
+      {
         path: "*",
         element: animate(Home),
       },
+
     ],
     Location
   );
