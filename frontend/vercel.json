@@ -1,6 +1,6 @@
 {
     "rewrites":  [
-      {"source": "/(.*)", "destination": "/"}
+      {"source": "/(.*)^((?!src)[\\s\\S])*$/gm", "destination": "/"}
     ]
 }
   
