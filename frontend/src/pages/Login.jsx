@@ -26,7 +26,7 @@ export default function Login() {
         // ...
         // New sign-in will be persisted with session persistence.
         signInWithEmailAndPassword(auth, email, password).then(() => {
-          navigate("/")
+          navigate("/profile")
         })
       })
       .catch((error) => {

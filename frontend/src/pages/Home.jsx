@@ -17,7 +17,7 @@ const Home = () => {
         <div>
         <h2>Redefining the Road</h2>
         <h3>Explore the future of Transportation</h3>
-        <a href="#" className="main-btn">Shop Now</a>
+        <a href="/products" className="main-btn">Shop Now</a>
         </div>
     
     </section>
