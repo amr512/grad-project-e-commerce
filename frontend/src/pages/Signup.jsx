@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../main";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,15 +12,24 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignup = () => {
     try {
       if (password !== confirmPassword) {
         alert("Passwords do not match");
         return;
       }
-      await createUserWithEmailAndPassword(auth, email, password);
-      
-      navigate("/profile");
+      createUserWithEmailAndPassword(auth, email, password).then(() => {
+        auth.authStateReady().then(() => {
+          sendEmailVerification(auth.currentUser).then(() => {
+            auth.signOut().then(() => {
+              alert(
+                "A verification email has been sent to your email address, please verify your email then log in."
+              );
+              navigate("/login");
+            });
+          });
+        });
+      });
     } catch (error) {
       alert(error.message);
     }
@@ -51,7 +63,9 @@ export default function Signup() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button type="submit" onClick={handleSignup}>Sign Up</button>
+          <button type="submit" onClick={handleSignup}>
+            Sign Up
+          </button>
         </div>
       </div>
     </main>

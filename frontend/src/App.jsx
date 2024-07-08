@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useRoutes } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -11,16 +11,19 @@ import Login from "./pages/Login";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
-
+import { auth } from "./main";
+import { sendEmailVerification } from "firebase/auth";
 const App = () => {
   const Location = useLocation();
-  // ColorModeProvider({
-  //   colorModeManager: localStorageManager,
-  //   options: { initialColorMode: "system" },
-  // });
-
-  // const navigate = useNavigate();
-
+  useEffect(() => {
+    auth.authStateReady().then(() => {
+      if(auth.currentUser && !auth.currentUser.emailVerified){
+        sendEmailVerification(auth.currentUser).then(() => {
+          alert("A verification email has been sent to your email address, please verify it.")
+        })
+      }
+    })
+  },[])
   const animate = (Component) => {
     // return function anim() {
     return (

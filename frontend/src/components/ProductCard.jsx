@@ -2,13 +2,35 @@ import PropTypes from "prop-types";
 import { API_URL } from "../helpers/constants";
 import formatCurrency from "../helpers/formatCurrency";
 import { useState } from "react";
-
+import {push, get} from "firebase/database"
+import { auth } from "../main";
 export default function ProductCard({ product }) {
   const [amount, setAmount] = useState(1);
+  function isInCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    return cart.some((item) => item.id === product.id);
+  }
+  async function addToCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || await get(`/cart/${auth.currentUser.uid}`) || [];
+    const index = cart.findIndex((item) => item.id === product.id);
+    if (index !== -1) {
+      cart[index].amount += amount;
+    } else {
+      cart.push({ ...product, amount });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    auth.authStateReady().then(() => {
+      if(auth.currentUser && auth.currentUser.emailVerified){
+        push(`/cart/${auth.currentUser.uid}`, {cart})
+      }
+    })
+    
+  }
+  
   return (
     <div className="product-card">
       <img src={product.images[0]} alt={product.name} />
-      <h4>{product.name}</h4>
+      <h4>{product.name} ({isInCart()&&<i className="fa-check fa"/>})</h4>
       <p>{formatCurrency(product.price.value, product.price.currency)}</p>
       <form
         action={`${API_URL}/create-checkout-session/`}
@@ -31,6 +53,12 @@ export default function ProductCard({ product }) {
 
           <button type="submit" className="buy-now">
             Buy Now
+          </button>
+          <button className="buy-now" onClick={(e)=>{
+            e.preventDefault();
+            addToCart().then(() => alert("Added to cart"))
+          }}>
+            <i className="fa-solid fa-cart-plus"></i>  
           </button>
         </div>
       </form>

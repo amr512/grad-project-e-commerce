@@ -8,6 +8,13 @@
   scroll-behavior: smooth;
   color: #fff;
 }
+
+* input {
+  color: #000;
+}
+
+
+
 body {
   margin: 0;
   background-color: #202533;

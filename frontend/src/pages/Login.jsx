@@ -5,7 +5,8 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  browserLocalPersistence
+  browserLocalPersistence,
+  sendEmailVerification
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./styles/login.css"
@@ -26,14 +27,27 @@ export default function Login() {
         // ...
         // New sign-in will be persisted with session persistence.
         signInWithEmailAndPassword(auth, email, password).then(() => {
-          navigate("/profile")
+          auth.authStateReady().then(() => {
+            
+            if(auth.currentUser && !auth.currentUser.emailVerified){
+              sendEmailVerification(auth.currentUser).then(() => {
+                auth.signOut().then(() => {
+                  alert(
+                    "A verification email has been sent to your email address, please verify your email then log in."
+                  );
+                  navigate("/login");
+                })
+              }).catch((error) => {
+                alert(error.message)
+              })
+            }else{
+              navigate("/profile")
+            }
+          })
+        }).catch((error) => {
+          alert(error.message)
         })
       })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
 
     } catch (error) {
       alert(error.message);
