@@ -76,7 +76,7 @@ const App = () => {
   return (
     <div className="app">
       <NavBar />
-      <div style={{minHeight: "90px"}}/>
+      <div style={{minHeight: "890px"}}/>
       <AnimatePresence>
         {/* <Routes location={Location} key={Location.pathname} > */}
         {routes}

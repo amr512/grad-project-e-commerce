@@ -17,11 +17,9 @@ export default function Footer() {
             </ul>
         </nav>
         <div className="social-links">
-            <a href="#">🐦</a>
-            <a href="#">📍</a>
-            <a href="#">🔵</a>
-            <a href="#">🅾️</a>
-            <a href="#">📸</a>
+            <a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i className="fa-brands fa-github"></i></a>
+            <a href="#" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
         </div>
         <p>&copy; 2024. All Rights Reserved.</p>
     </footer>
