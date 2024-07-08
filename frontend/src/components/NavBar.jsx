@@ -15,60 +15,32 @@ export default function NavBar() {
   });
   return (
     <header>
-      <div className="logo">
-        <img src={logo} alt="logo" />
-        <span>ADAS</span>
-      </div>
+  <div className="logo">
+    <img src="logo.jpg" alt="logo" />
+    <span>ADAS</span>
+  </div>
 
-      <ul className="nav-links">
-        <li>
-          <a href="/" className={location == "/" ? "active" : ""}>
-            Home
-          </a>
-        </li>
-        <li>
-          <a
-            href="/products"
-            className={location == "/products" ? "active" : ""}
-          >
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="/about" className={location == "/about" ? "active" : ""}>
-            About
-          </a>
-        </li>
-        <li>
-          <a href="/contact" className={location == "/contact" ? "active" : ""}>
-            <span>Contact Us</span>
-          </a>
-        </li>
-      </ul>
-      <div className="nav-icons">
-        {user ? (
-          <a href="/profile" className="nav-icon">
-            <i className="fa-solid fa-user"></i>
-          </a>
-        ) : (
-          <>
-          <a href="/login" className="nav-icon">
-            Login /
-          </a>
-            <a href="/signup" className="nav-icon">
-              <span>Register</span>
-            </a>
-          </>
-        )}
+  <ul className="nav-links">
+    <li><a href="/" className="active">Home</a></li>
+    <li><a href="/products">Products</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact"><span>Contact Us</span></a></li>
+  </ul>
 
-        <a href="#" className="nav-icon">
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </a>
-        <a href="#" className="nav-icon">
-          <i className="fa-solid fa-cart-shopping"></i>
-        </a>
-      </div>
-    </header>
+  <div className="nav-icons">
+    <a href="/profile" className="nav-icon"><i className="fa-solid fa-user"></i></a>
+    <a href="/login" className="nav-icon">Login /</a>
+    <a href="/signup" className="nav-icon"><span>Register</span></a>
+    <a href="#" className="nav-icon"><i className="fa-solid fa-magnifying-glass"></i></a>
+    <a href="#" className="nav-icon"><i className="fa-solid fa-cart-shopping"></i></a>
+  </div>
+
+  <div className="hamburger">
+    <i className="fa-solid fa-bars"></i>
+  </div>
+</header>
+
+
     // <Box className="navbar">
     //   {/* brand name to the left */}
     //   <Box className="logo">
