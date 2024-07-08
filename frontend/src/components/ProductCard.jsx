@@ -1,63 +1,69 @@
 import PropTypes from "prop-types";
-import "./styles/ProductCard.css";
 import { API_URL } from "../helpers/constants";
 import formatCurrency from "../helpers/formatCurrency";
-import {
-  Button,
-  Card,
-  CardHeader,
-  Input,
-  Image,
-  Heading,
-  StepSeparator,
-  CardBody,
-  CardFooter,
-} from "@chakra-ui/react";
+import { useState } from "react";
+
 export default function ProductCard({ product }) {
+  const [amount, setAmount] = useState(1);
   return (
-    <div>
-      <Card className="product-card">
-        <CardBody>
-          <Heading size={"md"}>{product.name}</Heading>
-          <Image
-            className="product-list__image"
-            src={product.images[0]}
-            alt={product.name}
-            dropShadow={"2xl"}
-          />
-          <div className="product-list__details">
-            <p>{product.description}</p>
-            <p>
-              Price:{" "}
-              {formatCurrency(
-                product.price.value / 100,
-                product.price.currency
-              )}
-            </p>
+    <div className="product-card">
+      <img src={product.images[0]} alt={product.name} />
+      <h4>{product.name}</h4>
+      <p>{formatCurrency(product.price.value, product.price.currency)}</p>
+      <form
+        action={`${API_URL}/create-checkout-session/`}
+        method="POST"
+      >
+        <div>
+          <input type="hidden" name="product_id" value={product.id} />
+          <input type="hidden" name="price_id" value={product.default_price} />
+          <div className="quantity-controls">
+            <button onClick={(e) => {
+              e.preventDefault();
+              setAmount(amount - 1);
+            }}>-</button>
+            <input type="number" name="quantity" style={{appearance:"textfield", color:"black"}} value={amount} min="1" defaultValue={1} />
+            <button onClick={(e)=>{
+              e.preventDefault();
+              setAmount(amount + 1);
+            }}>+</button>
           </div>
-          {/* <p>
-              {product?.metadata.keys.map((e) => (
-                <p key={e.key}>{e.key}: {e.value}</p>
-              ))}
-          </p> */}
-          <form
-            action={`${API_URL}/create-checkout-session/?price_id=${product.default_price}&product_id=${product.id}&quantity=1`}
-            method="POST"
-            >
-            <div className="flex-row">
-              <Input type="hidden" name="product_id" value={product.id} />
-              <Input
-                type="hidden"
-                name="price_id"
-                value={product.default_price}
-                />
-              <Input type="number" name="quantity" defaultValue={1} />
-              <Button type="submit">Buy</Button>
-            </div>
-          </form>
-                </CardBody>
-      </Card>
+
+          <button type="submit" className="buy-now">
+            Buy Now
+          </button>
+        </div>
+      </form>
     </div>
+    // <div>
+    //   <Card className="product-card">
+    //     <CardBody>
+    //       <Heading size={"md"}>{product.name}</Heading>
+    //       <Image
+    //         className="product-list__image"
+    //         src={product.images[0]}
+    //         alt={product.name}
+    //         dropShadow={"2xl"}
+    //       />
+    //       <div className="product-list__details">
+    //         <p>{product.description}</p>
+    //         <p>
+    //           Price:{" "}
+    //           {formatCurrency(
+    //             product.price.value,
+    //             product.price.currency
+    //           )}
+    //         </p>
+    //       </div>
+    //       {/* <p>
+    //           {product?.metadata.keys.map((e) => (
+    //             <p key={e.key}>{e.key}: {e.value}</p>
+    //           ))}
+    //       </p> */}
+
+    //             </CardBody>
+    //   </Card>
+    // </div>
   );
 }
 
@@ -72,6 +78,6 @@ ProductCard.propTypes = {
     }).isRequired,
     images: PropTypes.array.isRequired,
     description: PropTypes.string.isRequired,
-    metadata: PropTypes.object
+    metadata: PropTypes.object,
   }).isRequired,
 };

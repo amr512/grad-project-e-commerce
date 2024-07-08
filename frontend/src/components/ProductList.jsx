@@ -1,21 +1,24 @@
 import PropTypes from "prop-types";
 import ProductCard from "./ProductCard";
 import "./styles/ProductList.css";
-import { Spinner } from "@chakra-ui/react";
 export default function ProductList({ products }) {
   return (
-    <div className="product-list">
-      <h1>Products (placeholder for testing)</h1>
-      <div className="product-list__items">
+    <section className="products">
+      <h2>Our Products</h2>
+      <h3>Explore Our Products</h3>
+      <div className="product-grid">
         {products ? (
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <Spinner thickness={"5px"} emptyColor={"blue.500"} size={"xl"} />
+          <div className="spinner">
+            <i className="fa-solid fa-spinner rotate" />
+          </div>
+            
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

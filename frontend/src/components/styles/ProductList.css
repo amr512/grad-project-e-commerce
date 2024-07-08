@@ -1,5 +1,100 @@
-.product-list {
+.products {
+    margin-top: 40px;
+    
+}
+
+.products h2 {
+    color: #0056ff;
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.products h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #2f3752;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.2s ease;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+}
+.product-card:hover{
+  transform: scale(1.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.product-card h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+form {
+    display: flex;
+    align-items: center;
+}
+form .quantity-controls {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+form .quantity-controls button {
+    background-color: #0099ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+form .quantity-controls input {
+    text-align: center;
+    width: 50px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.spinner{
+    margin: 20px;
+    
+}
+
+.rotate{
+    scale: 2;
+    animation: rotation 1s infinite linear;
 }

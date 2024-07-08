@@ -1,0 +1,51 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 160px);
+    background-image: url(../images/selfDriving.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .signup-container {
+    background-color: #181C37;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+  }
+  
+  .signup-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .signup-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .signup-container label {
+    text-align: left;
+  }
+  
+  .signup-container input {
+    padding: 10px;
+    border: 1px solid #8779A2;
+    border-radius: 5px;
+    background-color: #2A3238;
+    color: #fff;
+  }
+  
+  .signup-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C8CAE2;
+    color: #181C37;
+    cursor: pointer;
+  }
+  .signup-container button:hover{
+    color: #fff;
+  }

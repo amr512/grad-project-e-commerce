@@ -2,7 +2,7 @@
 export default function formatCurrency(value, currency) {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: currency.toUpperCase(),
+        currency: (currency).toUpperCase(),
         maximumFractionDigits: 2
-    }).format(value);
+    }).format(value/100);
 }

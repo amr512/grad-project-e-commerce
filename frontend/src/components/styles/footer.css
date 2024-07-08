@@ -1,0 +1,42 @@
+
+footer {
+    background-color: #181a20;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+footer nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.social-links a {
+  color: #fff;
+  font-size: 1.5em;
+}

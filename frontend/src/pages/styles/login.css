@@ -1,0 +1,180 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 160px);
+    background-image: url(../../images/selfDriving.png);
+    background-size: cover;
+}
+
+.login-container {
+    background-color: #181C37;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+}
+
+.login-container p {
+    margin-bottom: 20px;
+    color: #F2F6F7;
+}
+.login-container a{
+    color: #d34c31;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-container label {
+    text-align: left;
+}
+
+.login-container input {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #39415b;
+    color: #fff;
+}
+
+.login-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C8CAE2;
+    color: #fff;
+    cursor: pointer;
+}
+.login-container button:hover{
+  color: #000;
+}
+
+.divider {
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+}
+
+.divider:before,
+.divider:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #444;
+}
+
+.divider:before {
+    left: 0;
+}
+
+.divider:after {
+    right: 0;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-login button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.social-login .google {
+    background-color: #4285F4;
+    color: #fff;
+}
+
+.social-login .facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.social-login .apple {
+    background-color: #000;
+    color: #fff;
+}
+
+  
+  @media only screen and (max-width: 768px) {
+  
+    .login-container {
+      padding: 20px;
+    }
+  
+    .login-container h1 {
+      font-size: 1.5em;
+    }
+  
+    .login-container p {
+      font-size: 1em;
+    }
+  
+    .login-container label {
+      font-size: 0.9em;
+    }
+  
+    .login-container input {
+      font-size: 0.8em;
+      padding: 7px;
+    }
+  
+    .login-container button {
+      font-size: 0.8em;
+      padding: 7px;
+    }
+  
+    .divider:before,
+    .divider:after {
+      width: 25%;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+  
+    .login-container {
+      padding: 15px;
+    }
+  
+    .login-container h1 {
+      font-size: 1.2em;
+    }
+  
+    .login-container p {
+      font-size: 0.9em;
+    }
+  
+    .login-container label {
+      font-size: 0.8em;
+    }
+  
+    .login-container input {
+      font-size: 0.7em;
+      padding: 6px;
+    }
+  
+    .login-container button {
+      font-size: 0.7em;
+      padding: 6px;
+    }
+  
+    .divider:before,
+    .divider:after {
+      width: 20%;
+    }
+  }

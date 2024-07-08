@@ -2,11 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import {
-  ChakraProvider,
-  ColorModeScript,
-  extendTheme,
-} from "@chakra-ui/react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import {initializeApp} from "firebase/app"
@@ -23,22 +18,32 @@ export const app = initializeApp({
 })
 export const auth = getAuth(app);
 
-const theme = extendTheme({
-  config: {
-    initialColorMode: "dark",
+// const theme = extendTheme({
+//   config: {
+//     initialColorMode: "dark",
 
-    // useSystemColorMode: true,
-  },
+//     // useSystemColorMode: true,
+//   },
+//   styles:{
+//     global: (props) => ({
+//       body: {
+//         bg: props.colorMode === "dark" ? "#202533" : "#f0f5f3",
+//       },
+//     }),
+//   },
+//   colors: {
+//     primary: {}
+//   },
 
-});
+// });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <ChakraProvider theme={theme}>
+    {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
+    {/* <ChakraProvider theme={theme}> */}
       <Router>
         <App />
       </Router>
-    </ChakraProvider>
+    {/* </ChakraProvider> */}
   </React.StrictMode>
 );

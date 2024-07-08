@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Routes, useLocation, useRoutes } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import "./App.css"; // Import your CSS animations
+
+
 import Home from "./pages/Home";
 import ProductsPage from "./pages/ProductsPage";
-import {
-  ColorModeProvider,
-  chakra,
-  localStorageManager,
-} from "@chakra-ui/react";
+
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
+import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
 
 const App = () => {
   const Location = useLocation();
@@ -54,27 +54,34 @@ const App = () => {
         element: animate(ProductsPage),
       },
       {
-        path:"/login",
+        path: "/login",
         element: animate(Login),
+      },
+      {
+        path: "/signup",
+        element: animate(Signup),
+      },
+      {
+        path: "/profile",
+        element: animate(Profile),
       },
       {
         path: "*",
         element: animate(Home),
       },
-
     ],
     Location
   );
 
   return (
-    <div
-      className="app"
-    >
+    <div className="app">
       <NavBar />
+      <div style={{minHeight: "90px"}}/>
       <AnimatePresence>
         {/* <Routes location={Location} key={Location.pathname} > */}
         {routes}
         {/* </Routes> */}
+        {animate(Footer)}
       </AnimatePresence>
     </div>
   );
