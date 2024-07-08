@@ -8,9 +8,13 @@ export default function ProductList({ products }) {
       <h3>Explore Our Products</h3>
       <div className="product-grid">
         {products ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
+          products.map((product) => 
+            product.active?
+              (<ProductCard key={product.id} product={product} />)
+            :null
+          )
+          
+        
         ) : (
           <div className="spinner">
             <i className="fa-solid fa-spinner rotate" />
