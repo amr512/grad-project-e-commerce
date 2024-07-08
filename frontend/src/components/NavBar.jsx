@@ -55,7 +55,7 @@ export default function NavBar() {
           <a href="/login" className="nav-icon">
             Login /
           </a>
-            <a href="/register" className="nav-icon">
+            <a href="/signup" className="nav-icon">
               <span>Register</span>
             </a>
           </>
