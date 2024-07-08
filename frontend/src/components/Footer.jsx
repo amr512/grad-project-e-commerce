@@ -3,7 +3,7 @@ import logo from "../images/trial1.png";
 import "./styles/footer.css";
 export default function Footer() {
   return (
-    <div className="footer">
+    <footer className="footer">
         <div className="footer-logo">
             <img src={logo} alt="ADAS Logo"/>
             <span>ADAS</span>
@@ -22,6 +22,6 @@ export default function Footer() {
             <a href="#" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
         </div>
         <p>&copy; 2024. All Rights Reserved.</p>
-    </div>
+    </footer>
   );
 }
