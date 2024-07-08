@@ -1,9 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Arial", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background-color: #202533;
+  color: #fff;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #181C37;
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+
+
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo {
+display: flex;
+align-items: center;
+}
+.logo span{
+  color: #F2F6F7;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.9em;
+}
+.logo span:hover{
+  color: #4A90E2;
+}
+
+.logo a img{
+  height: 100px;
+  margin-right: 10px;
+  transition: 0.6s ease;
+  position:relative;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    font-weight: 800;
+  }
+  .nav-links span{
+    color: #d34c31;
+  }
+  
+  .nav-links li {
+    margin: 0 15px;
+    color: #F2F6F7;
+    font-size: 2em;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #F2F6F7;
+    font-size: 16px;
+    transition: 0.3s ease;
+  
+  }
+  .nav-links a:hover{
+    color: #4A90E2;
+  }
+  
+  .nav-links a.active {
+    color: #4A90E2;
+    font-size: 0.7em;
+  }
+  
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+  }
+  
+  .nav-icons .nav-icon {
+    margin-left: 15px;
+    color: #F2F6F7;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  .nav-icons .nav-icon span{
+    color: #4A90E2;
+  }
+  
+  .nav-icons .nav-icon:hover {
+    color: #4A90E2;
+  }
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 160px);
-    background-image: url(../../images/selfDriving.png);
+    background-image: url(../images/selfDriving.png);
     background-size: cover;
 }
 
@@ -27,7 +135,7 @@ main {
     color: #d34c31;
 }
 
-.login-container form {
+.login-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -109,72 +217,3 @@ main {
     background-color: #000;
     color: #fff;
 }
-
-  
-  @media only screen and (max-width: 768px) {
-  
-    .login-container {
-      padding: 20px;
-    }
-  
-    .login-container h1 {
-      font-size: 1.5em;
-    }
-  
-    .login-container p {
-      font-size: 1em;
-    }
-  
-    .login-container label {
-      font-size: 0.9em;
-    }
-  
-    .login-container input {
-      font-size: 0.8em;
-      padding: 7px;
-    }
-  
-    .login-container button {
-      font-size: 0.8em;
-      padding: 7px;
-    }
-  
-    .divider:before,
-    .divider:after {
-      width: 25%;
-    }
-  }
-  
-  @media only screen and (max-width: 480px) {
-  
-    .login-container {
-      padding: 15px;
-    }
-  
-    .login-container h1 {
-      font-size: 1.2em;
-    }
-  
-    .login-container p {
-      font-size: 0.9em;
-    }
-  
-    .login-container label {
-      font-size: 0.8em;
-    }
-  
-    .login-container input {
-      font-size: 0.7em;
-      padding: 6px;
-    }
-  
-    .login-container button {
-      font-size: 0.7em;
-      padding: 6px;
-    }
-  
-    .divider:before,
-    .divider:after {
-      width: 20%;
-    }
-  }

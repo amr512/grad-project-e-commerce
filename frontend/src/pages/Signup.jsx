@@ -26,7 +26,7 @@ export default function Signup() {
     <main>
       <div className="signup-container">
         <h1>Sign Up</h1>
-        <div id="signup-form">
+        <div className="sign-up-form">
           <label htmlFor="email">Email</label>
           <input
             type="email"
