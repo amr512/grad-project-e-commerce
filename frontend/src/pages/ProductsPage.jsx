@@ -4,6 +4,7 @@ import ProductList from "../components/ProductList";
 import { API_URL } from "../helpers/constants";
 import car from "../images/car-adas.png";
 import "./styles/products.css";
+import Footer from "../components/Footer";
 export default function ProductsPage() {
   const [products, setProducts] = useState();
   const params = new URLSearchParams();
@@ -25,7 +26,9 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
   return (
+    <>
     <main>
+      
       <section className="hero">
         <div className="hero-content">
           <h1>Explore the Future of Transportation</h1>
@@ -55,5 +58,6 @@ export default function ProductsPage() {
       </section>
       <ProductList products={products} />
     </main>
+    </>
   );
 }
