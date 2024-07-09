@@ -67,6 +67,8 @@ export default function ProductsPage() {
           <img src={car} alt="Futuristic Car" />
         </div>
       </section>
+      <h2>Our Products</h2>
+      <h3>Explore Our Products</h3>
       <input className="search" type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
       <ProductList products={filteredProducts} />
     </main>
