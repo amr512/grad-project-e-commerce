@@ -11,12 +11,7 @@ export default function NavBar() {
   const [tabIndex, setTabIndex] = useState();
   const [user, setUser] = useState(null);
   const location = useLocation().pathname;
-  const [cart, setCart] = useState([]);
-  useEffect(() => {
-    if (localStorage.getItem("cart")) {
-      setCart(JSON.parse(localStorage.getItem("cart")));
-    }
-  }, []);
+
   auth.authStateReady().then(() => {
     setUser(auth.currentUser);
   });
@@ -60,7 +55,7 @@ export default function NavBar() {
           <i className="fa-solid fa-magnifying-glass"></i>
         </a>
         <form action={`${API_URL}/cart-checkout/`} method="POST">
-          <input type="hidden" name="items" value={JSON.stringify(cart.map(e=>({price:e.default_price,quantity:e.amount})))} />
+          <input type="hidden" name="items" value={JSON.stringify(JSON.parse(localStorage.getItem("cart")).map(e=>({price:e.default_price,quantity:e.amount})))} />
           <button
             style={{
               border: "none",
