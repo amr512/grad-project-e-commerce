@@ -79,7 +79,7 @@ export default function NavBar() {
             name="items"
             value={
               JSON.stringify(
-              JSON.parse(localStorage.getItem("cart")).map((i) => ({
+              JSON.parse(localStorage.getItem("cart"))?.map((i) => ({
                 price: i.default_price,
                 quantity: i.amount,
               }))
