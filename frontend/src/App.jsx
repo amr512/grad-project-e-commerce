@@ -13,6 +13,7 @@ import Signup from "./pages/Signup";
 import { auth } from "./main";
 import { sendEmailVerification } from "firebase/auth";
 import ContactUs from "./pages/Contact";
+import About from "./pages/About";
 const App = () => {
   const Location = useLocation();
   useEffect(() => {
@@ -73,6 +74,10 @@ const App = () => {
       {
         path: "/profile",
         element: animate(Profile),
+      },
+      {
+        path: "/about",
+        element: animate(About),
       },
       {
         path: "*",
