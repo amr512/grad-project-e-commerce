@@ -5,6 +5,11 @@ header {
   padding: 10px 20px;
   background-color: #333;
   color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 .logo {
@@ -19,6 +24,7 @@ header {
 
 .nav-links {
   list-style: none;
+  display: none; 
   display: flex;
   gap: 20px;
 }
@@ -39,6 +45,12 @@ header {
   color: #4A90E2;
 }
 
+
+
+
+.nav-links.active {
+  display: block; 
+}
 .nav-icons {
   display: flex;
   gap: 15px;

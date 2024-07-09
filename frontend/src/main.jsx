@@ -6,6 +6,7 @@ import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import {initializeApp} from "firebase/app"
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 export const app = initializeApp({
   apiKey: import.meta.env.VITE_API_KEY,
@@ -17,7 +18,7 @@ export const app = initializeApp({
   measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 })
 export const auth = getAuth(app);
-
+export const database = getDatabase(app,"https://grad-proj-10188-default-rtdb.firebaseio.com/")
 // const theme = extendTheme({
 //   config: {
 //     initialColorMode: "dark",

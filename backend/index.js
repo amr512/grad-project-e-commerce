@@ -4,8 +4,8 @@ import fs from "fs";
 import { Stripe } from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
-import {initializeApp} from "firebase/app"
-import {getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
 const firebase = initializeApp({
@@ -15,8 +15,8 @@ const firebase = initializeApp({
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
-})
+  measurementId: process.env.MEASUREMENT_ID,
+});
 // const analytics = getAnalytics(firebase);
 
 app.use(
@@ -27,7 +27,7 @@ app.use(
   bodyParser.urlencoded({ extended: true })
 );
 
-const WEBSITE_DOMAIN = "http://localhost:5173";
+const WEBSITE_DOMAIN = process.env.DOMAIN || "http://localhost:5173";
 
 const port = process.env.PORT || 3000;
 // let products = []
@@ -51,32 +51,41 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log("server started on port: " + port));
 
+let productCache = { timeStamp: 0, products: [] };
 app.get("/products", async (req, res) => {
-  stripe.products
-    .list()
-    .then(async (products) => {
-      return await Promise.all(
-        products.data.map(async (product) => {
-          const price = await stripe.prices.retrieve(product.default_price);
-          product.price = {
-            value: price.unit_amount_decimal,
-            currency: price.currency,
-          };
-          return product;
-          //   .then((p) => (p.unit_amount_decimal + " " + p.currency))
-          //   .then((price) => {
-          //     product.price = price;
-          //     console.log(product);
-          //     return product;
-          //   });
-        })
-      );
-    })
-    .then((e) => {
-      res.json(e);
-    });
+  console.log(productCache.timeStamp)
+  if (productCache.timeStamp < Date.now() - 600 * 1000) {
+    console.log("retrieving products")
+    stripe.products
+      .list()
+      .then(async (products) => {
+        let prods = await Promise.all(
+          products.data.map(async (product) => {
+            const price = await stripe.prices.retrieve(product.default_price);
+            product.price = {
+              value: price.unit_amount_decimal,
+              currency: price.currency,
+            };
+            return product;
+            //   .then((p) => (p.unit_amount_decimal + " " + p.currency))
+            //   .then((price) => {
+            //     product.price = price;
+            //     console.log(product);
+            //     return product;
+            //   });
+          })
+        );
+        productCache = { timeStamp: Date.now(), products: prods };
+        return prods;
+      })
+      .then((e) => {
+        res.json(e);
+      });
+  } else {
+    console.log("using cached products")
+    res.json(productCache.products);
+  }
 });
-
 app.get("/products/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -97,6 +106,11 @@ app.post("/create-checkout-session/", async (req, res) => {
           // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
           price: req.body.price_id,
           quantity: req.body.quantity,
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 1,
+          },
+
         },
       ],
       mode: "payment",
@@ -112,7 +126,32 @@ app.post("/create-checkout-session/", async (req, res) => {
   }
 });
 
+app.post("/cart-checkout/", async (req, res) => {
+  try {
+    console.log(req.body.items);
+    const session = await stripe.checkout.sessions.create({
+      line_items: JSON.parse(req.body.items).map((item)=>(
+        {
+          price: item.price,
+          quantity: item.quantity,
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 1,
+          },
+        }
+      )),
+      mode: "payment",
+      success_url: `${WEBSITE_DOMAIN}/success`,
+      cancel_url: `${WEBSITE_DOMAIN}/canceled`,
+    });
 
+    res.redirect(303, session.url);
+  } catch (err) {
+    res
+      .status(err.statusCode || 500)
+      .send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
+  }
+});
 
 // {
 //     id: 'prod_QMMRSndPYiWjFa',
