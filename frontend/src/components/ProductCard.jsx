@@ -18,11 +18,11 @@ export default function ProductCard({ product }) {
   };
 
   function isInCart() {
-    return JSON.parse(localStorage.getItem("cart")).find((item) => item.id === product.id) || { amount: 0 };
+    return JSON.parse(localStorage.getItem("cart"))?.find((item) => item.id === product.id) || { amount: 0 };
   }
 
   async function addToCart() {
-    let updatedCart = JSON.parse(localStorage.getItem("cart"))
+    let updatedCart = JSON.parse(localStorage.getItem("cart")) || [];
     const index = updatedCart.findIndex((item) => item.id === product.id);
     if (index !== -1) {
       updatedCart[index] = {
