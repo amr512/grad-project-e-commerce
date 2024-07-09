@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import "./styles/ProductList.css";
 export default function ProductList({ products }) {
   return (
-    <section className="products">
+    <section className="products" style={{ marginTop: "40px" }}>
       <h2>Our Products</h2>
       <h3>Explore Our Products</h3>
       <div className="product-grid">
@@ -15,8 +15,8 @@ export default function ProductList({ products }) {
           })
         ) : (
           <div className="spinner">
-            <i className="fa-solid fa-spinner rotate" />
-          </div>
+                <i className="fa-solid fa-spinner rotate" />
+              </div>
         )}
       </div>
     </section>

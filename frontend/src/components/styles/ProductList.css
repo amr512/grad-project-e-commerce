@@ -1,5 +1,6 @@
 .products {
     margin-top: 40px;
+    
 }
 
 .products h2 {
@@ -16,7 +17,7 @@
 }
 
 .product-grid {
-    display: grid;
+    display: inline-block;
     grid-template-columns: repeat(auto-fit, minmax(400px, 5fr));
     gap: 20px;
 }

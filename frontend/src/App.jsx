@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useRoutes } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 import Home from "./pages/Home";
 import ProductsPage from "./pages/ProductsPage";
 
@@ -17,13 +16,15 @@ const App = () => {
   const Location = useLocation();
   useEffect(() => {
     auth.authStateReady().then(() => {
-      if(auth.currentUser && !auth.currentUser.emailVerified){
+      if (auth.currentUser && !auth.currentUser.emailVerified) {
         sendEmailVerification(auth.currentUser).then(() => {
-          alert("A verification email has been sent to your email address, please verify it.")
-        })
+          alert(
+            "A verification email has been sent to your email address, please verify it."
+          );
+        });
       }
-    })
-  },[])
+    });
+  }, []);
   const animate = (Component) => {
     // return function anim() {
     return (
@@ -77,11 +78,10 @@ const App = () => {
   );
 
   return (
-    <div className="app">
+    <div style={{ gap:(Location.pathname == "/products"?"0px":"0px"), display: "flex", flexDirection: "column" }}>
       <NavBar />
-      <div style={{minHeight: "90px"}}/>
+      <div style={{ minHeight: "90px" }} />
       <AnimatePresence>
-        {/* <Routes location={Location} key={Location.pathname} > */}
         {routes}
         {/* </Routes> */}
         {animate(Footer)}
