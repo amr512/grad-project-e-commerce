@@ -12,7 +12,7 @@ export default function ContactUs() {
         <title>ADAS - Contact Us</title>
         <meta name="description" content="Home Page" />
       </Helmet>
-      <main>
+      <main className="main-contact">
         <div className="contact-info">
           <div className="contact-method">
             <div className="icon">
