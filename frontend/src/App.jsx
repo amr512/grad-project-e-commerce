@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Home from "./pages/Home";
 import ProductsPage from "./pages/ProductsPage";
-
+import "./App.css";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
@@ -82,17 +82,25 @@ const App = () => {
     Location
   );
 
-  return (
-    <div style={{ gap:(Location.pathname == "/products"?"0px":"0px"), display: "flex", flexDirection: "column" }}>
-      <NavBar />
-      <div style={{ minHeight: "90px" }} />
-      <AnimatePresence>
-        {routes}
-        {/* </Routes> */}
-        {(Location.pathname != "/products")?animate(Footer):""}
-      </AnimatePresence>
-    </div>
-  );
+  if (window.innerHeight > window.innerWidth) {
+    return <div>mobile not supported</div>;
+  } else {
+    return (
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <NavBar />
+        {Location.pathname == "/products" ? (
+          <div style={{ minHeight: "240px" }} />
+        ) : (
+          ""
+        )}
+        <AnimatePresence>
+          {routes}
+          {/* </Routes> */}
+          {Location.pathname != "/products" ? animate(Footer) : ""}
+        </AnimatePresence>
+      </div>
+    );
+  }
 };
 
 export default App;

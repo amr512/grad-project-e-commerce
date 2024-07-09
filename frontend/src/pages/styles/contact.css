@@ -1,7 +1,13 @@
 
 
 main {
-    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px !important;
+    height: calc(100vh - 160px);
+    background-image: url(../../images/selfDriving.png) !important;
+    background-size: cover;
 }
 
 .contact-info, .contact-form, .product-section {

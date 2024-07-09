@@ -5,6 +5,7 @@ import { API_URL } from "../helpers/constants";
 import car from "../images/car-adas.png";
 import "./styles/products.css";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 export default function ProductsPage() {
   const [products, setProducts] = useState();
   const params = new URLSearchParams();
@@ -38,6 +39,10 @@ export default function ProductsPage() {
 
   return (
     <>
+          <Helmet>
+        <title>ADAS - Products</title>
+        <meta name="description" content="Home Page" />
+      </Helmet>
     <main>
       
       <section className="hero">

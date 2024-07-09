@@ -60,7 +60,7 @@
   line-height: 1.5;
 }
 
-/* Media Queries for responsiveness */
+/* Media Queries for responsiveness 
 
 @media (max-width: 1200px) {
   .main h2 {
@@ -83,7 +83,7 @@
 @media (max-width: 768px) {
   .main {
     flex-direction: column;
-    height: auto; /* Adjust height for small screens */
+    height: auto; 
   }
 
   .main h2 {
@@ -129,4 +129,4 @@
   .brief p {
     font-size: 0.9em;
   }
-}
+} */

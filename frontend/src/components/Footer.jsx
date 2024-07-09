@@ -10,10 +10,10 @@ export default function Footer() {
         </div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="/">Home</a></li>
                 
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Purchase</a></li>
+                <li><a href="/ContactUs">Contact</a></li>
+                <li><a href="/products">Purchase</a></li>
             </ul>
         </nav>
         <div className="social-links">

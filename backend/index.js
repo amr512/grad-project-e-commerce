@@ -1,23 +1,16 @@
 import e from "express";
 import "dotenv/config";
-import fs from "fs";
 import { Stripe } from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {createTransport} from "nodemailer"
+
+
+
+
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
-const firebase = initializeApp({
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID,
-});
 // const analytics = getAnalytics(firebase);
 
 app.use(
@@ -67,40 +60,39 @@ const transporter = createTransport({
 app.listen(port, () => console.log("server started on port: " + port));
 
 let productCache = { timeStamp: 0, products: [] };
+// This route handles the GET request for all products
+// It first checks if the products are already cached and if they are older than 600 seconds
+// If they are not cached, it retrieves the products from Stripe and caches them
+// If they are cached, it returns the cached products
 app.get("/products", async (req, res) => {
-  console.log(productCache.timeStamp)
+  // Check if products are cached
   if (productCache.timeStamp < Date.now() - 600 * 1000) {
-    console.log("retrieving products")
+    // Products are not cached or are older than 600 seconds, retrieve from Stripe
     stripe.products
       .list()
       .then(async (products) => {
         let prods = await Promise.all(
           products.data.map(async (product) => {
             const price = await stripe.prices.retrieve(product.default_price);
+            // formatting the price in a readable way
             product.price = {
               value: price.unit_amount_decimal,
               currency: price.currency,
             };
             return product;
-            //   .then((p) => (p.unit_amount_decimal + " " + p.currency))
-            //   .then((price) => {
-            //     product.price = price;
-            //     console.log(product);
-            //     return product;
-            //   });
           })
         );
+        // Cache the products and their time of retrieval
         productCache = { timeStamp: Date.now(), products: prods };
-        return prods;
+        res.json(prods); ;
       })
-      .then((e) => {
-        res.json(e);
-      });
   } else {
+    // Products are already cached, return them
     console.log("using cached products")
     res.json(productCache.products);
   }
 });
+
 app.get("/products/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -179,7 +171,6 @@ app.post("/contact", (req, res) => {
     replyTo: req.body.email
 }).catch((err) => console.log(err))
 })
-
 // {
 //     id: 'prod_QMMRSndPYiWjFa',
 //     object: 'product',

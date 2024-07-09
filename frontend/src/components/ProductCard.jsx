@@ -6,45 +6,39 @@ import { useEffect, useState } from "react";
 import { auth } from "../main";
 export default function ProductCard({ product }) {
   const [amount, setAmount] = useState(1);
-  const [cart, setCart] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const [cartRef, setCartRef] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("cart")) {
-      setCart(JSON.parse(localStorage.getItem("cart")));
-    }
   }, []);
 
-  function isInCart() {
-    return JSON.parse(localStorage.getItem("cart"))?.find((item) => item.id === product.id) || { amount: 0 };
-  }
-  async function addToCart() {
-    console.log(cart);
-    let Cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const updateCart = (updatedCart) => {
+    setRefresh(!refresh);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
 
-    const index = Cart.findIndex((item) => item.id === product.id);
+  function isInCart() {
+    return JSON.parse(localStorage.getItem("cart")).find((item) => item.id === product.id) || { amount: 0 };
+  }
+
+  async function addToCart() {
+    let updatedCart = JSON.parse(localStorage.getItem("cart"))
+    const index = updatedCart.findIndex((item) => item.id === product.id);
     if (index !== -1) {
-      Cart = Cart.map((item) => {
-        if (item.id === product.id) {
-          return { ...item, amount: item.amount + amount };
-        } else {
-          return item;
-        }
-      })
+      updatedCart[index] = {
+        ...updatedCart[index],
+        amount: updatedCart[index].amount + amount,
+      };
     } else {
-      Cart.push({ ...product, amount });
+      updatedCart.push({ ...product, amount });
     }
-    setCart(Cart);
-    localStorage.setItem("cart", JSON.stringify(Cart));
+    updateCart(updatedCart);
   }
 
   function removeFromCart() {
-    let Cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    setCart(Cart.filter((item) => item.id !== product.id));
-    localStorage.setItem("cart", JSON.stringify(Cart.filter((item) => item.id !== product.id)));
+    let updatedCart = JSON.parse(localStorage.getItem("cart")).filter((item) => item.id !== product.id);
+    updateCart(updatedCart);
   }
-
   return (
     <div className="product-card">
       <img src={product.images[0]} alt={product.name} />
@@ -96,17 +90,19 @@ export default function ProductCard({ product }) {
             </div>
           )}
 
-          <button type="submit" className="buy-now">
+          {/* <button type="submit" className="buy-now">
             Buy Now
-          </button>
+          </button> */}
           <button
             className="buy-now"
             onClick={(e) => {
               e.preventDefault();
               addToCart();
             }}
+            style={{display:((isInCart().amount > 0)? "none": "inline")}}
           >
             <i className="fa-solid fa-cart-plus"></i>
+            Add to Cart
           </button>
         </div>
       </form>

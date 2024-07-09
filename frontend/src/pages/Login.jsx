@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./styles/login.css"
+import { Helmet } from "react-helmet";
 
 export default function Login() {
     const [hidden, setHidden] = useState(true)
@@ -71,24 +72,26 @@ export default function Login() {
   };
 
   return (
-
-    <main>
-    <div className="login-container">
-        <h1>Log In</h1>
-        <p>Don&apos;t have an account? <a href="/signup">Sign Up</a></p>
-        <div className="login-form">
+    <><Helmet>
+      <title>ADAS - Login</title>
+      <meta name="description" content="Home Page" />
+    </Helmet><main>
+        <div className="login-container">
+          <h1>Log In</h1>
+          <p>Don&apos;t have an account? <a href="/signup">Sign Up</a></p>
+          <div className="login-form">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="xxxxx@gmail.com"/>
+            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="xxxxx@gmail.com" />
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="xxxxxxxxx"/>
+            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="xxxxxxxxx" />
             <button type="submit" onClick={handleLogin}>Log in</button>
-        </div>
-        <div className="divider">or</div>
-        <div className="social-login">
+          </div>
+          <div className="divider">or</div>
+          <div className="social-login">
             <button className="google" onClick={handleGoogle}>Continue with Google</button>
+          </div>
         </div>
-    </div>
-</main>
+      </main></>
 
     // <Box display={"flex"} dir="column" alignItems={"center"} justifyContent={"center"} >
     //   <Stack>
