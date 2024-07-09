@@ -22,10 +22,10 @@ export default function NavBar() {
   });
   return (
     <header>
-      <div className="logo">
-        <img src="logo.jpg" alt="logo" />
-        <span>ADAS</span>
-      </div>
+  <div className="logo">
+    <img src={logo} alt="logo" />
+    <span>ADAS</span>
+  </div>
 
       <ul className="nav-links">
         <li>
