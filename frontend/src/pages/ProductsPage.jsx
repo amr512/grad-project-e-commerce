@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 export default function ProductsPage() {
   const [products, setProducts] = useState();
   const params = new URLSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
   if (params.has("success")) {
     alert("Payment successful");
   }
@@ -25,6 +26,16 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = products?.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()) || product?.description?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
     <main>
@@ -56,7 +67,8 @@ export default function ProductsPage() {
           <img src={car} alt="Futuristic Car" />
         </div>
       </section>
-      <ProductList products={products} />
+      <input className="search" type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
+      <ProductList products={filteredProducts} />
     </main>
     </>
   );

@@ -16,32 +16,33 @@ export default function ProductCard({ product }) {
   }, []);
 
   function isInCart() {
-    return cart.find((item) => item.id === product.id) || { amount: 0 };
+    return JSON.parse(localStorage.getItem("cart"))?.find((item) => item.id === product.id) || { amount: 0 };
   }
   async function addToCart() {
     console.log(cart);
-    const index = cart.findIndex((item) => item.id === product.id);
-    if (index !== -1) {
-      setCart([
-        ...cart.slice(0, index),
-        { ...cart[index], amount: cart[index].amount + amount },
-        ...cart.slice(index + 1),
-      ]);
-      localStorage.setItem("cart", JSON.stringify([
-        ...cart.slice(0, index),
-        { ...cart[index], amount: cart[index].amount + amount },
-        ...cart.slice(index + 1),
-      ]));
+    let Cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+    const index = Cart.findIndex((item) => item.id === product.id);
+    if (index !== -1) {
+      Cart = Cart.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, amount: item.amount + amount };
+        } else {
+          return item;
+        }
+      })
     } else {
-      setCart([...cart, { ...product, amount }]);
-      localStorage.setItem("cart", JSON.stringify([...cart, { ...product, amount }]));
+      Cart.push({ ...product, amount });
     }
+    setCart(Cart);
+    localStorage.setItem("cart", JSON.stringify(Cart));
   }
 
   function removeFromCart() {
-    setCart(cart.filter((item) => item.id !== product.id));
-    localStorage.setItem("cart", JSON.stringify(cart.filter((item) => item.id !== product.id)));
+    let Cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    setCart(Cart.filter((item) => item.id !== product.id));
+    localStorage.setItem("cart", JSON.stringify(Cart.filter((item) => item.id !== product.id)));
   }
 
   return (
@@ -82,7 +83,7 @@ export default function ProductCard({ product }) {
                 style={{ appearance: "textfield", color: "black" }}
                 value={amount}
                 min="1"
-                defaultValue={1}
+                
               />
               <button
                 onClick={(e) => {

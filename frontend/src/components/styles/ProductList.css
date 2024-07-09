@@ -17,13 +17,14 @@
 }
 
 .product-grid {
-    display: inline-block;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 5fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
 .product-card {
     background-color: #2f3752;
+    max-width: 300px;
     padding: 20px;
     border-radius: 10px;
     text-align: center;

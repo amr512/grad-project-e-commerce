@@ -6,6 +6,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {createTransport} from "nodemailer"
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
 const firebase = initializeApp({
@@ -27,9 +28,23 @@ app.use(
   bodyParser.urlencoded({ extended: true })
 );
 
+
+
+
 const WEBSITE_DOMAIN = process.env.DOMAIN || "http://localhost:5173";
 
 const port = process.env.PORT || 3000;
+const transporter = createTransport({
+  host: "smtp.zoho.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  }
+})
+
+
 // let products = []
 // fs.readdirSync("products").forEach((file) => {
 //     // console.log(file)
@@ -152,6 +167,18 @@ app.post("/cart-checkout/", async (req, res) => {
       .send(`<h1>Error ${err.statusCode}:</h1> ${err.message}`);
   }
 });
+
+app.post("/contact", (req, res) => {
+  console.log(req.body);
+  transporter.sendMail({
+    subject: `contact request from ${req.body.email}, ${req.body.phone}`,
+    text: `from:${req.body.name}. \n ${req.body.text}`,
+    from: process.env.EMAIL,
+    sender: req.body.email,
+    to: "support@adas.amr512.com",
+    replyTo: req.body.email
+}).catch((err) => console.log(err))
+})
 
 // {
 //     id: 'prod_QMMRSndPYiWjFa',

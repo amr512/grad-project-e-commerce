@@ -1,0 +1,69 @@
+
+
+main {
+    padding: 50px;
+}
+
+.contact-info, .contact-form, .product-section {
+    background-color: #2E3B55;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-method {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.contact-method .icon {
+    background-color: #2E4E91;
+    border-radius: 50%;
+    padding: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.contact-method .icon img {
+    width: 30px;
+}
+
+.contact-method h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0099ff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #007acc;
+}
+
+

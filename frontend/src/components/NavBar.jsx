@@ -11,7 +11,7 @@ export default function NavBar() {
   const [tabIndex, setTabIndex] = useState();
   const [user, setUser] = useState(null);
   const location = useLocation().pathname;
-
+  const [cart, setCart] = useState([]);
   auth.authStateReady().then(() => {
     setUser(auth.currentUser);
   });
@@ -42,7 +42,7 @@ export default function NavBar() {
           </a>
         </li>
         <li>
-          <a href="/contact" className={location == "/contact" ? "active" : ""}>
+          <a href="/ContactUs" className={location == "/contact" ? "active" : ""}>
             <span>Contact Us</span>
           </a>
         </li>
@@ -61,8 +61,22 @@ export default function NavBar() {
           <i className="fa-solid fa-magnifying-glass"></i>
         </a>
         <form action={`${API_URL}/cart-checkout/`} method="POST">
-          <input type="hidden" name="items" value={JSON.stringify(JSON.parse(localStorage.getItem("cart"))?.map(e=>({price:e.default_price,quantity:e.amount})))} />
+          <input type="hidden" name="items" value={cart} />
           <button
+            onClick={(e) => {
+              setCart(
+                JSON.stringify(
+                  JSON.parse(localStorage.getItem("cart"))?.map((e) => ({
+                    price: e.default_price,
+                    quantity: e.amount,
+                  }))
+                )
+              );
+              if (JSON.parse(localStorage.getItem("cart")) == null) {
+                e.preventDefault();
+                alert("Cart is empty");
+              }
+            }}
             style={{
               border: "none",
               backgroundColor: "transparent",

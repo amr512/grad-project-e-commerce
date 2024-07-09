@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import banner from "../images/new vehicle.jpg";
 import "./styles/home.css";
 import { auth } from "../main";
+import Footer from "../components/Footer";
 const Home = () => {
   
   return (
@@ -28,6 +29,9 @@ const Home = () => {
             <p>ADAS Cars is committed to revolutionizing the automotive industry with innovative technology and cutting-edge design. Our mission is to create vehicles that are not only safe and reliable but also offer an unparalleled driving experience.</p>
         </div>
     </section>
+    {/* <section>
+    <Footer/>
+    </section> */}
     </>
 
     //#region old code

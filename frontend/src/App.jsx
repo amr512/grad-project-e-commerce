@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import { auth } from "./main";
 import { sendEmailVerification } from "firebase/auth";
+import ContactUs from "./pages/Contact";
 const App = () => {
   const Location = useLocation();
   useEffect(() => {
@@ -66,6 +67,10 @@ const App = () => {
         element: animate(Signup),
       },
       {
+        path: "/ContactUs",
+        element: animate(ContactUs),
+      },
+      {
         path: "/profile",
         element: animate(Profile),
       },
@@ -84,7 +89,7 @@ const App = () => {
       <AnimatePresence>
         {routes}
         {/* </Routes> */}
-        {animate(Footer)}
+        {(Location.pathname != "/products")?animate(Footer):""}
       </AnimatePresence>
     </div>
   );
