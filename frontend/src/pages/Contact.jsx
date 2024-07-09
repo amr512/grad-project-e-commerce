@@ -28,7 +28,7 @@ export default function ContactUs() {
             </div>
             <h2>Write To Us</h2>
             <p>Fill out our form and we will contact you within 24 hours.</p>
-            <p>Email: support@adas.amr512.com</p>
+            <a href="mailto:support@adas.amr512.com">Email: support@adas.amr512.com</a>
           </div>
         </div>
         <iframe name="dummy" id="dummy" style={{ display: "none" }}></iframe>
