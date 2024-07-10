@@ -87,9 +87,7 @@ const App = () => {
     Location
   );
 
-  if (window.innerHeight > window.innerWidth) {
-    return <div>mobile not supported</div>;
-  } else {
+
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <NavBar />
@@ -105,7 +103,7 @@ const App = () => {
         </AnimatePresence>
       </div>
     );
-  }
+  
 };
 
 export default App;
