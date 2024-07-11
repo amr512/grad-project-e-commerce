@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import ProductCard from "./ProductCard";
-import "./styles/ProductList.css";
+// import "./styles/ProductList.css";
 export default function ProductList({ products }) {
   return (
     <section className="products" style={{ marginTop: "40px" }}>

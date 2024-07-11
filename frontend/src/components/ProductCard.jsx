@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
         {product.name}
       </h4>
       <p>{formatCurrency(product.price.value, product.price.currency)}</p>
-      <form action={`${API_URL}/create-checkout-session/`} method="POST">
+      <form className="card-form" action={`${API_URL}/create-checkout-session/`} method="POST">
         <div>
           <input type="hidden" name="product_id" value={product.id} />
           <input type="hidden" name="price_id" value={product.default_price} />

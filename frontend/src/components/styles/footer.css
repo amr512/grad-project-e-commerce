@@ -2,10 +2,8 @@ footer {
     background-color: #181a20;
     padding: 20px;
     text-align: center;
-    /* position: absolute; */
-
-    z-index: auto;
     width: 100%;
+    overflow: auto;
   }
   
   .footer-logo {
@@ -33,13 +31,13 @@ footer {
     text-decoration: none;
   }
   
-  .social-links {
+  footer .social-links {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 20px;
   }
-  .social-links a {
+  footer .social-links a {
   color: #fff;
   font-size: 1.5em;
   }

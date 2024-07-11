@@ -66,6 +66,7 @@ let productCache = { timeStamp: 0, products: [] };
 // If they are cached, it returns the cached products
 app.get("/products", async (req, res) => {
   // Check if products are cached
+  try{
   if (productCache.timeStamp < Date.now() - 600 * 1000) {
     // Products are not cached or are older than 600 seconds, retrieve from Stripe
     stripe.products
@@ -90,6 +91,10 @@ app.get("/products", async (req, res) => {
     // Products are already cached, return them
     console.log("using cached products")
     res.json(productCache.products);
+  }
+  }catch(err){
+    res
+      .status(err.statusCode || 500)
   }
 });
 

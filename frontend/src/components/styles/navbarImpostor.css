@@ -1,11 +1,9 @@
-header {
+.fake-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   padding: 20px;
   background-color: #282f44;
-  z-index: 999;
   width: 100%;
 }
 

@@ -1,24 +1,24 @@
-.main {
+.home-main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 90px);
   background: url('../../images/new vehicle.jpg') no-repeat center center/cover;
   padding: 20px; /* Add padding for small screens */
   box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
-.main div {
+.home-main div {
   text-align: center;
 }
 
-.main h2 {
+.home-main h2 {
   font-size: 3.5em;
   margin-bottom: 10px;
   color: #4A90E2;
 }
 
-.main h3 {
+.home-main h3 {
   font-size: 2em;
   margin-bottom: 40px;
   color: #d34c31;

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { auth } from "../main";
 import { useEffect } from "react";
-import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { updateProfile } from "firebase/auth";
+import "./styles/profile.css";
 export default function Profile() {
   const [email, setEmail] = useState("");
   const [displayName, setDisplayName] = useState("");

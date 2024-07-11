@@ -14,7 +14,7 @@ const Home = () => {
       </Helmet>
 
 
-      <section className="main">
+      <section className="home-main">
         <div>
         <h2>Redefining the Road</h2>
         <h3>Explore the future of Transportation</h3>

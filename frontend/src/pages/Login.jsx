@@ -75,7 +75,7 @@ export default function Login() {
     <><Helmet>
       <title>ADAS - Login</title>
       <meta name="description" content="Home Page" />
-    </Helmet><main>
+    </Helmet><main className="login-page">
         <div className="login-container">
           <h1>Log In</h1>
           <p>Don&apos;t have an account? <a href="/signup">Sign Up</a></p>

@@ -10,7 +10,7 @@ const About = () => {
         <meta name="description" content="Home Page" />
       </Helmet>
 
-      <section className="main">
+      <section className="about-main">
         <h2 className="title">ADAS Website Team</h2>
         <section className="cards" id="skills">
           <div className="content">

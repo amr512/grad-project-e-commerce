@@ -14,6 +14,7 @@ import { auth } from "./main";
 import { sendEmailVerification } from "firebase/auth";
 import ContactUs from "./pages/Contact";
 import About from "./pages/About";
+import NavBarImpostor from "./components/NavBarImpostor";
 const App = () => {
   const Location = useLocation();
   useEffect(() => {
@@ -89,17 +90,22 @@ const App = () => {
 
 
     return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div >
+
         <NavBar />
-        {Location.pathname == "/products" ? (
-          <div style={{ minHeight: "240px" }} />
-        ) : (
-          ""
-        )}
+        {/* 
+        this impostor keeps the navbar from hiding page content 
+        by pushing it down exactly by the height of the navbar 
+        and being hidden by it instead
+        dev note: stupid
+        */}
+        <NavBarImpostor/>
+      
+
         <AnimatePresence>
           {routes}
           {/* </Routes> */}
-          {Location.pathname != "/products" ? animate(Footer) : ""}
+          {animate(Footer)}
         </AnimatePresence>
       </div>
     );

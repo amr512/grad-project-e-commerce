@@ -39,7 +39,7 @@ export default function Signup() {
     <><Helmet>
       <title>ADAS - Signup</title>
       <meta name="description" content="Home Page" />
-    </Helmet><main>
+    </Helmet><main className="signup">
         <div className="signup-container">
           <h1>Sign Up</h1>
           <div className="sign-up-form">
