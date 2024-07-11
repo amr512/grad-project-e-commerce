@@ -19,24 +19,8 @@ export const app = initializeApp({
 })
 export const auth = getAuth(app);
 export const database = getDatabase(app,"https://grad-proj-10188-default-rtdb.firebaseio.com/")
-// const theme = extendTheme({
-//   config: {
-//     initialColorMode: "dark",
 
-//     // useSystemColorMode: true,
-//   },
-//   styles:{
-//     global: (props) => ({
-//       body: {
-//         bg: props.colorMode === "dark" ? "#202533" : "#f0f5f3",
-//       },
-//     }),
-//   },
-//   colors: {
-//     primary: {}
-//   },
 
-// });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -11,7 +11,7 @@ import {createTransport} from "nodemailer"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = e();
-// const analytics = getAnalytics(firebase);
+
 
 app.use(
   e.static("public"),

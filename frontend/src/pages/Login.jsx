@@ -64,7 +64,7 @@ export default function Login() {
       const creds = GoogleAuthProvider.credentialFromResult(res);
       const token = creds.accessToken;
       const user = res.user;
-      navigate("/user")
+      navigate("/profile")
       })
     } catch (error) {
       alert(error.message);
