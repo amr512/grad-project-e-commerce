@@ -103,7 +103,7 @@ export default function NavBarImpostor() {
               cursor: "pointer",
               marginLeft: "30px",
               marginRight: "10px",
-              scale: "1.5",
+              scale: "1",
             }}
           >
             <i className="fa-solid fa-cart-shopping"></i> checkout

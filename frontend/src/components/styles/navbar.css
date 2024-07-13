@@ -2,7 +2,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: fixed !important;
   padding: 20px;
   background-color: #282f44;
   z-index: 999;
@@ -110,3 +110,6 @@ header {
 .nav-icons form button:hover {
   color: #4a90e2;
 }
+
+
+

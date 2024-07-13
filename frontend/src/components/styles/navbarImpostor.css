@@ -7,63 +7,63 @@
   width: 100%;
 }
 
-.logo {
+.fake-navbar .logo {
   display: flex;
   align-items: center;
 }
 
-.logo img {
+.fake-navbar .logo img {
   height: 50px;
   margin-right: 10px;
 }
 
-.logo {
+.fake-navbar .logo {
   display: flex;
   align-items: center;
 }
-.logo span {
+.fake-navbar .logo span {
   color: #f2f6f7;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 800;
   font-size: 1.9em;
 }
-.logo span:hover {
+.fake-navbar .logo span:hover {
   color: #4a90e2;
 }
 
-.logo a img {
+.fake-navbar .logo a img {
   height: 100px;
   margin-right: 10px;
   transition: 0.6s ease;
   position: relative;
 }
-.nav-links {
+.fake-navbar .nav-links {
   display: flex;
   list-style: none;
   font-weight: 800;
 }
-.nav-links span {
+.fake-navbar .nav-links span {
   color: #d34c31;
 }
 
-.nav-links li {
+.fake-navbar .nav-links li {
   margin: 0 15px;
   color: #f2f6f7;
   font-size: 2em;
 }
 
-.nav-links a {
+.fake-navbar .nav-links a {
   text-decoration: none;
   color: #f2f6f7;
   font-size: 16px;
   transition: 0.3s ease;
 }
-.nav-links a:hover {
+.fake-navbar .nav-links a:hover {
   color: #4a90e2;
 }
 
-.nav-links a.active {
+.fake-navbar .nav-links a.active {
   color: #4a90e2;
   font-size: 0.7em;
 }
@@ -71,40 +71,40 @@
 
 
 
-.nav-links.active {
+.fake-navbar .nav-links.active {
   display: block; 
 }
-.nav-icons {
+.fake-navbar .nav-icons {
   display: flex;
   align-items: center;
   font-size: 1.3em;
 }
 
-.nav-icons .nav-icon {
+.fake-navbar .nav-icons .fake-navbar .nav-icon {
   margin-left: 5px;
   color: #f2f6f7;
   text-decoration: none;
   transition: 0.3s ease;
 }
 
-.nav-icons .nav-icon a span {
+.fake-navbar .nav-icons .fake-navbar .nav-icon a span {
   color: #4a90e2;
   margin: 0;
 }
-.nav-icons .nav-icon:hover {
+.fake-navbar .nav-icons .fake-navbar .nav-icon:hover {
   color: #4a90e2;
 }
-.nav-icons form button {
+.fake-navbar .nav-icons form button {
   margin-left: 5px;
   color: #f2f6f7;
   text-decoration: none;
   transition: 0.3s ease;
 }
 
-.nav-icons form button {
+.fake-navbar .nav-icons form button {
   /* color: #4a90e2; */
   margin: 0;
 }
-.nav-icons form button:hover {
+.fake-navbar .nav-icons form button:hover {
   color: #4a90e2;
 }

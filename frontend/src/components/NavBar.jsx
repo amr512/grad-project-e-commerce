@@ -103,7 +103,6 @@ export default function NavBar() {
               cursor: "pointer",
               marginLeft: "30px",
               marginRight: "10px",
-              scale: "1.5",
             }}
           >
             <i className="fa-solid fa-cart-shopping"></i> checkout

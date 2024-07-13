@@ -15,7 +15,25 @@ body {
   color: #000;
 }
 
-
-
-
-
+@media only screen and (max-width: 990px) {
+  .mobilenav{
+    display: flex !important;
+  }
+  header{
+    display: none !important;
+  }
+  .fake-navbar{
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 990px) {
+  .mobilenav{
+    display: none !important;
+  }
+  header{
+    display: flex !important;
+  }
+  .fake-navbar{
+    display: flex !important;
+  }
+}
