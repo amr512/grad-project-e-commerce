@@ -7,9 +7,6 @@ import { auth } from "../main";
 export default function ProductCard({ product }) {
   const [amount, setAmount] = useState(1);
   const [refresh, setRefresh] = useState(false);
-  
-
-  
 
   const updateCart = (updatedCart) => {
     setRefresh(!refresh);
@@ -53,7 +50,7 @@ export default function ProductCard({ product }) {
         <div
           style={{
             gap: "10px",
-            padding: "20px",
+            paddingTop: "20px",
             display: "flex",
             flexDirection: "column",
           }}
@@ -109,7 +106,7 @@ export default function ProductCard({ product }) {
           </form>
         </div>
       ) : (
-        <div className="quantity-controls" style={{marginTop: "20px"}}>
+        <div className="quantity-controls" style={{ marginTop: "20px" }}>
           <button
             onClick={(e) => {
               e.preventDefault();
