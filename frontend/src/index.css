@@ -25,6 +25,9 @@ body {
   .fake-navbar{
     display: none !important;
   }
+  body{
+    margin-top: 55px !important;
+  }
 }
 @media only screen and (min-width: 990px) {
   .mobilenav{
@@ -36,4 +39,5 @@ body {
   .fake-navbar{
     display: flex !important;
   }
+
 }

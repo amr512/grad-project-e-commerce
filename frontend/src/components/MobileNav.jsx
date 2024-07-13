@@ -22,7 +22,7 @@ function MobileNav() {
     <Navbar
       expand="lg"
       className="bg-body-tertiary mobilenav"
-      sticky="top"
+      fixed="top"
       data-bs-theme="dark"
     >
       <Container>
