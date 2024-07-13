@@ -4,7 +4,7 @@ import { Stripe } from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
 import {createTransport} from "nodemailer"
-
+import fs from "fs"
 
 
 
@@ -176,6 +176,12 @@ app.post("/contact", (req, res) => {
     replyTo: req.body.email
 }).catch((err) => console.log(err))
 })
+
+app.get("/qr", (req, res) => {
+  res.contentType("image/png");
+  res.send(fs.readFileSync("./qr.png"));
+})
+
 // {
 //     id: 'prod_QMMRSndPYiWjFa',
 //     object: 'product',
