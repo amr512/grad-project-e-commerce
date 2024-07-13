@@ -7,10 +7,9 @@ import { auth } from "../main";
 export default function ProductCard({ product }) {
   const [amount, setAmount] = useState(1);
   const [refresh, setRefresh] = useState(false);
-  const [cartRef, setCartRef] = useState();
+  
 
-  useEffect(() => {
-  }, []);
+  
 
   const updateCart = (updatedCart) => {
     setRefresh(!refresh);
@@ -18,7 +17,11 @@ export default function ProductCard({ product }) {
   };
 
   function isInCart() {
-    return JSON.parse(localStorage.getItem("cart"))?.find((item) => item.id === product.id) || { amount: 0 };
+    return (
+      JSON.parse(localStorage.getItem("cart"))?.find(
+        (item) => item.id === product.id
+      ) || { amount: 0 }
+    );
   }
 
   async function addToCart() {
@@ -36,76 +39,117 @@ export default function ProductCard({ product }) {
   }
 
   function removeFromCart() {
-    let updatedCart = JSON.parse(localStorage.getItem("cart")).filter((item) => item.id !== product.id);
+    let updatedCart = JSON.parse(localStorage.getItem("cart")).filter(
+      (item) => item.id !== product.id
+    );
     updateCart(updatedCart);
   }
   return (
     <div className="product-card">
       <img src={product.images[0]} alt={product.name} />
-      <h4>
-        {product.name}
-      </h4>
+      <h4>{product.name}</h4>
       <p>{formatCurrency(product.price.value, product.price.currency)}</p>
-      <form className="card-form" action={`${API_URL}/create-checkout-session/`} method="POST">
-        <div>
-          <input type="hidden" name="product_id" value={product.id} />
-          <input type="hidden" name="price_id" value={product.default_price} />
-          {isInCart().amount > 0 ? (
-            <button
-            type="button"
-              className="buy-now remove"
-              onClick={(e) => {
-                e.preventDefault();
-                removeFromCart();
-              }}
-            >
-              Remove {isInCart().amount} from cart
-            </button>
-          ) : (
-            <div className="quantity-controls">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setAmount(amount - 1);
-                }}
-              >
-                -
-              </button>
-              <input
-                type="number"
-                name="quantity"
-                style={{ appearance: "textfield", color: "black" }}
-                value={amount}
-                min="1"
-                
-              />
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setAmount(amount + 1);
-                }}
-              >
-                +
-              </button>
-            </div>
-          )}
-
-          {/* <button type="submit" className="buy-now">
-            Buy Now
-          </button> */}
+      {isInCart().amount > 0 ? (
+        <div
+          style={{
+            gap: "10px",
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <button
+            type="button"
             className="buy-now"
             onClick={(e) => {
               e.preventDefault();
-              addToCart();
+              removeFromCart();
             }}
-            style={{display:((isInCart().amount > 0)? "none": "inline")}}
           >
-            <i className="fa-solid fa-cart-plus"></i>
-            Add to Cart
+            Remove {isInCart().amount} from cart
+          </button>
+          <form
+            action={`${API_URL}/cart-checkout`}
+            method="POST"
+            onSubmit={(e) => {
+              localStorage.setItem("cart", JSON.stringify([]));
+            }}
+          >
+            <input
+              type="hidden"
+              name="items"
+              value={JSON.stringify(
+                JSON.parse(localStorage.getItem("cart"))?.map((i) => ({
+                  price: i.default_price,
+                  quantity: i.amount,
+                }))
+              )}
+            />
+            <button
+              className="buy-now"
+              onClick={(e) => {
+                if (
+                  JSON.parse(localStorage.getItem("cart")) == null ||
+                  JSON.parse(localStorage.getItem("cart"))?.length == 0
+                ) {
+                  e.preventDefault();
+                  alert("Cart is empty");
+                }
+              }}
+              // style={{
+              //   border: "none",
+              //   backgroundColor: "transparent",
+              //   cursor: "pointer",
+              //   marginLeft: "30px",
+              //   marginRight: "10px",
+              // }}
+            >
+              <i className="fa-solid fa-cart-shopping"></i> checkout
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="quantity-controls">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setAmount(amount - 1);
+            }}
+          >
+            -
+          </button>
+          <input
+            type="number"
+            name="quantity"
+            style={{ appearance: "textfield", color: "black" }}
+            value={amount}
+            min="1"
+          />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setAmount(amount + 1);
+            }}
+          >
+            +
           </button>
         </div>
-      </form>
+      )}
+
+      {/* <button type="submit" className="buy-now">
+            Buy Now
+          </button> */}
+      <button
+        className="buy-now"
+        onClick={(e) => {
+          e.preventDefault();
+          addToCart();
+        }}
+        style={{ display: isInCart().amount > 0 ? "none" : "inline" }}
+      >
+        <i className="fa-solid fa-cart-plus"></i>
+        Add to Cart
+      </button>
     </div>
     // <div>
     //   <Card className="product-card">
