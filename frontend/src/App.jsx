@@ -83,6 +83,10 @@ const App = () => {
         element: animate(About),
       },
       {
+        path:"/qr",
+        element: window.location.replace("https://api.adas.amr512.com/qr"),
+      },
+      {
         path: "*",
         element: animate(Home),
       },
