@@ -15,18 +15,20 @@ export default function ContactUs() {
       <main className="main-contact">
         <div className="contact-info">
           <div className="contact-method">
+            <h2>
             <div className="icon">
               <i className="fa-solid fa-phone" />
             </div>
-            <h2>Call To Us</h2>
+              Call To Us</h2>
             <p>We are available 24/7, 7 days a week.</p>
             <p>Phone: +8801611112222</p>
           </div>
           <div className="contact-method">
+            <h2>
             <div className="icon">
               <i className="fa-solid fa-envelope" />
             </div>
-            <h2>Write To Us</h2>
+              Write To Us</h2>
             <p>Fill out our form and we will contact you within 24 hours.</p>
             <a href="mailto:support@adas.amr512.com">Email: support@adas.amr512.com</a>
           </div>
