@@ -109,7 +109,7 @@ export default function ProductCard({ product }) {
           </form>
         </div>
       ) : (
-        <div className="quantity-controls">
+        <div className="quantity-controls" style={{marginTop: "20px"}}>
           <button
             onClick={(e) => {
               e.preventDefault();
