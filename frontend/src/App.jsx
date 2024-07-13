@@ -15,7 +15,7 @@ import { sendEmailVerification } from "firebase/auth";
 import ContactUs from "./pages/Contact";
 import About from "./pages/About";
 import NavBarImpostor from "./components/NavBarImpostor";
-import MoibileNav from "./components/MobileNav";
+import MobileNav from "./components/MobileNav";
 import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const Location = useLocation();
@@ -102,7 +102,7 @@ const App = () => {
         dev note: stupid
         */}
         <NavBarImpostor/>
-        <MoibileNav/> 
+        <MobileNav/> 
   
 
 

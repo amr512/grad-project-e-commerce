@@ -9,7 +9,7 @@ import Button from "react-bootstrap/esm/Button";
 import { API_URL } from "../helpers/constants";
 import logo from "../images/trial1.png";
 
-function MoibileNav() {
+function MobileNav() {
   const [_refresh, refresh] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -107,4 +107,4 @@ function MoibileNav() {
   );
 }
 
-export default MoibileNav;
+export default MobileNav;
