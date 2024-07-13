@@ -84,7 +84,7 @@ const App = () => {
       },
       {
         path:"/qr",
-        element: window.location.replace("https://api.adas.amr512.com/qr"),
+        element: animate(()=><div style={{display:"flex",justifyContent:"center"}}><img src="https://api.adas.amr512.com/qr" alt="qr code" className="qr"/></div>),
       },
       {
         path: "*",
