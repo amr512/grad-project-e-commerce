@@ -23,9 +23,8 @@ const About = () => {
                 <p>UI/UX Developer</p>
               </div>
               <div className="social-links">
-            <a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i className="fa-brands fa-github"></i></a>
-            <a href="#" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/mohamed.cabo.6789" target="_blank"><i className="fab fa-facebook-f"></i></a>
+  
         </div>
             </div>
           </div>
@@ -57,7 +56,7 @@ const About = () => {
               <div className="social-links">
             <a href="https://www.facebook.com/amr512amr/" target="_blank"><i className="fab fa-facebook-f"></i></a>
             <a href="https://github.com/amr512" target="_blank"><i className="fa-brands fa-github"></i></a>
-            <a href="#" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/amr512" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
         </div>
             </div>
           </div>
