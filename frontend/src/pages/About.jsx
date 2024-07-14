@@ -24,6 +24,8 @@ const About = () => {
               </div>
               <div className="social-links">
             <a href="https://www.facebook.com/mohamed.cabo.6789" target="_blank"><i className="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/mohammed-elsayed1" target="_blank"><i className="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mohamed-el-sayed-04a642307" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
   
         </div>
             </div>
