@@ -14,7 +14,7 @@ export default function Footer() {
                 
                 <li><a href="/ContactUs">Contact</a></li>
                 <li><a href="/products">Purchase</a></li>
-                <li><a href="/">Download Application</a></li>
+                <li><a href="https://drive.google.com/drive/folders/1vwOu8me8YsBXMDIaS8UHGZFuLbnZnRdY">Download Application</a></li>
             </ul>
         </nav>
         <div className="social-links">
